@@ -11,6 +11,14 @@ export const register = async (req, res) => {
 	try {
 		const { email, password, username } = req.body;
 
+		const userFound = await User.findOne({ email });
+
+		if (userFound) {
+			return res
+				.status(400)
+				.json({ message: ["The email is already in use."] });
+		}
+
 		const passwordHash = await bcrypt.hash(password, 10); // --> esto da un string random
 
 		const newUser = new User({
