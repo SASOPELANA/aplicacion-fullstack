@@ -9,9 +9,11 @@ import taskRoutes from "./routes/tasks.routes.js";
 const app = express();
 
 app.use(
-	cors({
-		origin: "http://localhost:5173", // --> Solo se comunica con esta ruta
-	}),
+  cors({
+    origin: "http://localhost:5173", // --> Solo se comunica con esta ruta
+    // Habilitar credenciales para el frontend
+    credentials: true,
+  })
 );
 
 // Morgan para las peticiones HTTP por tewrminal.

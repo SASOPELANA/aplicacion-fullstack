@@ -1,12 +1,14 @@
 // Usamos axios para hacer peticiones HTTP
-import axios from "axios";
+import axios from "./axios.js";
 
 // Definimos la URL base de la API
 // Asegúrate de que la URL sea correcta según tu configuración del backend
-const API = "http://localhost:5000/api";
 
 // Función para registrar un nuevo usuario
 // Esta función envía una solicitud POST a la ruta /register con los datos del usuario
-export const registerRequest = (user) => axios.post(`${API}/register`, user);
+export const registerRequest = (user) => axios.post(`/register`, user);
 
-export const loginRequest = (user) => axios.post(`${API}/login`, user);
+export const loginRequest = (user) => axios.post(`/login`, user);
+
+// Función para verificar el token de autenticación
+export const verifyTokenRequest = () => axios.get(`/verify`);
