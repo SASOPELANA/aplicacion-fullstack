@@ -18,7 +18,7 @@ function TasksPage() {
 	}
 
 	return (
-		<div className=" md:grid md:grid-cols-3 md:gap-2">
+		<div className=" md:grid sm:grid-cols-2 md:grid-cols-3 md:gap-2">
 			{tasks.map((task) => (
 				<TaskCard key={task._id} task={task} />
 			))}

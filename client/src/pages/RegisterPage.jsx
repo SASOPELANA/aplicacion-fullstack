@@ -4,78 +4,87 @@ import { useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
 function RegisterPage() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-  const { signup, isAuthenticated, errors: registerErrors } = useAuth();
-  const navigate = useNavigate();
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm();
+	const { signup, isAuthenticated, errors: registerErrors } = useAuth();
+	const navigate = useNavigate();
 
-  useEffect(() => {
-    if (isAuthenticated) {
-      navigate("/tasks");
-    }
-  }, [isAuthenticated]);
+	useEffect(() => {
+		if (isAuthenticated) {
+			navigate("/tasks");
+		}
+	}, [isAuthenticated]);
 
-  const onSubmit = handleSubmit(async (values) => {
-    await signup(values);
-  });
+	const onSubmit = handleSubmit(async (values) => {
+		await signup(values);
+	});
 
-  return (
-    <div className="bg-zinc-800 max-w-md p-10 rounded-md ">
-      {registerErrors.map((error, index) => (
-        <p
-          key={index}
-          className="bg-red-500 text-white p-2 text-center my-2 rounded-md"
-        >
-          {error}
-        </p>
-      ))}
+	return (
+		<div className="flex items-center justify-center h-[calc(100vh-100px)]">
+			<div className="bg-zinc-800 max-w-md p-10 rounded-md ">
+				{registerErrors.map((error, index) => (
+					<p
+						key={index}
+						className="bg-red-500 text-white p-2 text-center my-2 rounded-md"
+					>
+						{error}
+					</p>
+				))}
 
-      <form onSubmit={onSubmit}>
-        <input
-          type="text"
-          {...register("username", { required: true })}
-          className="w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2"
-          placeholder="Username"
-        />
+				<form onSubmit={onSubmit}>
+					<h1 className="text-2xl font-bold my-2">Register</h1>
 
-        {errors.username && (
-          <p className="text-red-500">Username is required</p>
-        )}
+					<input
+						type="text"
+						{...register("username", { required: true })}
+						className="w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2"
+						placeholder="Username"
+					/>
 
-        <input
-          type="email"
-          {...register("email", { required: true })}
-          className="w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2"
-          placeholder="Email"
-        />
+					{errors.username && (
+						<p className="text-red-500">Username is required</p>
+					)}
 
-        {errors.email && <p className="text-red-500">Email is required</p>}
+					<input
+						type="email"
+						{...register("email", { required: true })}
+						className="w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2"
+						placeholder="Email"
+					/>
 
-        <input
-          type="password"
-          {...register("password", { required: true })}
-          className="w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2"
-          placeholder="Password"
-        />
+					{errors.email && <p className="text-red-500">Email is required</p>}
 
-        {errors.password && (
-          <p className="text-red-500">Password is required</p>
-        )}
+					<input
+						type="password"
+						{...register("password", { required: true })}
+						className="w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2"
+						placeholder="Password"
+					/>
 
-        <button type="submit">Register</button>
-      </form>
+					{errors.password && (
+						<p className="text-red-500">Password is required</p>
+					)}
 
-      <p className="flex gap-x-2 justify-between  ">
-        Already have an account?{" "}
-        <Link to="/login" className="text-sky-500">
-          Login
-        </Link>
-      </p>
-    </div>
-  );
+					<button
+						type="submit"
+						className="bg-sky-500 text-white px-4 py-2 rounded-md my-2 hover:cursor-pointer"
+					>
+						Register
+					</button>
+				</form>
+
+				<p className="flex gap-x-2 justify-between my-2  ">
+					Already have an account?
+					<Link to="/login" className="text-sky-500">
+						Login
+					</Link>
+				</p>
+			</div>
+		</div>
+	);
 }
 
 export default RegisterPage;

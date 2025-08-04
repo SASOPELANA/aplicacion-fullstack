@@ -35,7 +35,7 @@ function LoginPage() {
 					</p>
 				))}
 
-				<h1 className="text-2xl font-bold">Login</h1>
+				<h1 className="text-2xl font-bold my-2">Login</h1>
 
 				<form onSubmit={onSubmit}>
 					<input
@@ -58,10 +58,15 @@ function LoginPage() {
 						<p className="text-red-500">Password is required</p>
 					)}
 
-					<button type="submit">Login</button>
+					<button
+						type="submit"
+						className="bg-sky-500 text-white px-4 py-2 rounded-md my-2 hover:cursor-pointer"
+					>
+						Login
+					</button>
 				</form>
 
-				<p className="flex gap-x-2 justify-between  ">
+				<p className="flex gap-x-2 justify-between my-2 ">
 					Dont't have an account?{" "}
 					<Link to="/register" className="text-sky-500">
 						Sign up
