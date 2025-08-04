@@ -10,12 +10,14 @@ import HomePage from "./pages/HomePage.jsx";
 
 import ProtectedRoute from "./ProtectedRoute.jsx";
 import { TaskProvider } from "./context/TaskContext.jsx";
+import Navbar from "./components/Navbar.jsx";
 
 function App() {
 	return (
 		<AuthProvider>
 			<TaskProvider>
 				<BrowserRouter>
+					<Navbar />
 					<Routes>
 						// Rutas publicas
 						<Route path="/" element={<HomePage />} />
